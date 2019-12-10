@@ -43,15 +43,18 @@ public class RobotGame {
 
 		switch (command) {
 		case PLACE:
-			String[] params = args[1].split(",");
-			
-			int x = parsePosition(params[0]);
-			int y = parsePosition(params[1]);
-			Direction direction = Direction.valueOf(params[2]);
-			
-			Position position = new Position(x, y, direction);
-			if (board.isValidPosition(position)) {
-				robot.setPosition(position);
+			if (args.length > 1) {
+				String[] params = args[1].split(",");
+				if (params.length == 3) {
+					int x = parsePosition(params[0]);
+					int y = parsePosition(params[1]);
+					Direction direction = Direction.valueOf(params[2]);
+
+					Position position = new Position(x, y, direction);
+					if (board.isValidPosition(position)) {
+						robot.setPosition(position);
+					}
+				}
 			}
 			break;
 		case MOVE:
